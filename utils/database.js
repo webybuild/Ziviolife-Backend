@@ -1,10 +1,10 @@
 const Sequelize = require("sequelize");
 
 const Db = new Sequelize({
-  database: "aartizelite",
-  username: "admin_aartize",
-  password: "PGUTpOgXBG0M4PG05Yu8",
-  host: "aartize-db.czoycsmow908.us-east-1.rds.amazonaws.com",
+  database: "ziviolife",
+  username: "postgres",
+  password: "RsqpMekIfHZ2Fgg5Muke",
+  host: "ziviolife-db-postgres.cq124cwu48dn.us-east-1.rds.amazonaws.com",
   port: 5432,
   ssl: true,
   dialect: "postgres",
