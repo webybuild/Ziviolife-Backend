@@ -1,5 +1,6 @@
 const Product = require("../schema/productSchema");
 const s3 = require("../utils/s3Connection");
+const Bucket = Process.env.S3_BUCKET;
 
 module.exports = async (req, res) => {
   try {
@@ -27,7 +28,7 @@ module.exports = async (req, res) => {
         image.mimetype.split("/")[1];
       imageList.push(fileName);
       const params = {
-        Bucket: "aartizelite",
+        Bucket,
         Key: "images/" + fileName,
         Body: image.buffer,
         ContentType: image.mimetype,
@@ -47,7 +48,7 @@ module.exports = async (req, res) => {
         image.mimetype.split("/")[1];
       opticImageList.push(fileName);
       const params = {
-        Bucket: "aartizelite",
+        Bucket,
         Key: "images/" + fileName,
         Body: image.buffer,
         ContentType: image.mimetype,
@@ -61,7 +62,7 @@ module.exports = async (req, res) => {
         Date.now() + "-" + Math.round(Math.random() * 1e9) + ".pdf";
       pdfList[pdf.originalname] = fileName;
       const params = {
-        Bucket: "aartizelite",
+        Bucket,
         Key: "pdfs/" + fileName,
         Body: pdf.buffer,
         ContentType: pdf.mimetype,

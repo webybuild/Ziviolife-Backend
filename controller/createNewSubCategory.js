@@ -1,5 +1,6 @@
 const SubCategory = require("../schema/subCategorySchema");
 const s3 = require("../utils/s3Connection");
+const Bucket = Process.env.S3_BUCKET;
 
 module.exports = async (req, res) => {
   try {
@@ -8,7 +9,7 @@ module.exports = async (req, res) => {
       Date.now() + "-" + Math.round(Math.random() * 1e9) + "." + fileType;
 
     const params = {
-      Bucket: "aartizelite",
+      Bucket,
       Key: "images/" + fileName,
       Body: req.files[0].buffer,
       ContentType: "image/" + fileType,

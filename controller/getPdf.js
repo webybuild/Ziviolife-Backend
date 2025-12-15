@@ -1,10 +1,11 @@
 const S3 = require("../utils/s3Connection");
+const Bucket = Process.env.S3_BUCKET;
 
 module.exports = async (req, res) => {
   const { filename } = req.params;
 
   const params = {
-    Bucket: "aartizelite",
+    Bucket,
     Key: "pdfs/" + filename,
   };
 
