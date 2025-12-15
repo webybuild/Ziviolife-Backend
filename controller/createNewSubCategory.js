@@ -1,6 +1,6 @@
 const SubCategory = require("../schema/subCategorySchema");
 const s3 = require("../utils/s3Connection");
-const Bucket = Process.env.S3_BUCKET;
+const Bucket = process.env.S3_BUCKET;
 
 module.exports = async (req, res) => {
   try {
