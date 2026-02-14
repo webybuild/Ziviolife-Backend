@@ -33,9 +33,9 @@ const MainProduct = Db.define('mainProduct',{
         type: DataTypes.ARRAY(DataTypes.TEXT),
         allowNull: false
     },
-    opticImages: {
+    complianceImages: {
         type: DataTypes.ARRAY(DataTypes.TEXT),
-        allowNull: false
+        allowNull: true
     },
     status: {
         type: DataTypes.ENUM(['Active', 'Inactive']),

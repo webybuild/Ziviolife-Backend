@@ -11,12 +11,12 @@ module.exports = async (req, res) => {
       req.body.productVariants = [req.body.productVariants];
     }
     const images = req.files.filter((file) => file.fieldname === "image");
-    const opticImages = req.files.filter(
-      (file) => file.fieldname === "opticImages"
+    const complianceImages = req.files.filter(
+      (file) => file.fieldname === "complianceImages"
     );
     const pdfs = req.files.filter((file) => file.fieldname === "pdf");
     const imageList = [];
-    const opticImageList = [];
+    const complianceImageList = [];
     const pdfList = {};
 
     const imageUploadPromises = images.map((image) => {
@@ -37,7 +37,7 @@ module.exports = async (req, res) => {
       return s3.upload(params).promise();
     });
 
-    const opticImageUploadPromises = opticImages.map((image) => {
+    const opticImageUploadPromises = complianceImages.map((image) => {
       const fileName =
         "image" +
         "-" +
@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
         Math.round(Math.random() * 1e9) +
         "." +
         image.mimetype.split("/")[1];
-      opticImageList.push(fileName);
+      complianceImageList.push(fileName);
       const params = {
         Bucket,
         Key: "images/" + fileName,
@@ -79,7 +79,7 @@ module.exports = async (req, res) => {
       ...req.body,
       status: "Active",
       images: imageList,
-      opticImages: opticImageList,
+      complianceImages: complianceImageList,
       pdfs: JSON.stringify(pdfList),
     });
     res.status(200).json({ message: "Product Added Successfully!" });

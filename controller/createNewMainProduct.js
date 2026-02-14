@@ -7,12 +7,11 @@ module.exports = async (req, res) => {
     const featureImages = req.files.filter(
       (file) => file.fieldname === "featureImages"
     );
-    const opticImages = req.files.filter(
-      (file) => file.fieldname === "opticImages"
+    const complianceImages = req.files.filter(
+      (file) => file.fieldname === "complianceImages"
     );
     const featureList = [];
-    const opticList = [];
-
+    const complianceImageList = [];
     const featureImageUploadPromises = featureImages.map((image) => {
       const fileName =
         Date.now() +
@@ -31,14 +30,14 @@ module.exports = async (req, res) => {
       return s3.upload(params).promise();
     });
 
-    const opticImageUploadPromises = opticImages.map((image) => {
+    const complianceImageUploadPromises = complianceImages.map((image) => {
       const fileName =
         Date.now() +
         "-" +
         Math.round(Math.random() * 1e9) +
         "." +
         image.mimetype.split("/")[1];
-      opticList.push(fileName);
+      complianceImageList.push(fileName);
       const params = {
         Bucket,
         Key: "images/" + fileName,
@@ -50,7 +49,7 @@ module.exports = async (req, res) => {
     });
 
     await Promise.all(featureImageUploadPromises);
-    await Promise.all(opticImageUploadPromises);
+    await Promise.all(complianceImageUploadPromises);
 
     const fileName =
       Date.now() +
@@ -84,7 +83,7 @@ module.exports = async (req, res) => {
           subCategoryId,
           imageUrl: fileName,
           featureImages: featureList,
-          opticImages: opticList,
+          complianceImages: complianceImageList,
           status: "Active",
         });
         res

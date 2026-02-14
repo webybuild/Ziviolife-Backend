@@ -16,7 +16,15 @@ const Product = Db.define('product',{
         type: DataTypes.STRING,
         allowNull: false
     },
-    dimension: {
+    description: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    applicationArea: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    benefits: {
         type: DataTypes.STRING,
         allowNull: true
     },
@@ -26,127 +34,91 @@ const Product = Db.define('product',{
     },
     material: {
         type: DataTypes.STRING,
-        allowNull: false
-    },
-    lightSource: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    power: {
-        type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     lumen: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     efficacy: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     driverOption: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     driver: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     inputVoltage: {
         type: DataTypes.STRING,
-        allowNull: false
-    },
-    optic: {
-        type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     opticValues: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     cct: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
-    bug: {
+    cri: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
-    ulr: {
+    size: {
         type: DataTypes.STRING,
-        allowNull: false
-    },
-    ulor: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    cie: {
-        type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     dimmingType: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
-    productColors: {
+    finishColor: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
-    weight: {
+    ip: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     operatingTemperature: {
         type: DataTypes.STRING,
-        allowNull: false
-    },
-    cable: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    throughWiring: {
-        type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     lro: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
-    macadamEllipse: {
+    wattage: {
         type: DataTypes.STRING,
-        allowNull: false
-    },
-    l90B10: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    l80B10: {
-        type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     l80B50: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     variant: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     productVariants: {
         type: DataTypes.ARRAY(DataTypes.JSON),
-        allowNull: false
+        allowNull: true
     },
     images: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
+        allowNull: true
     },
-    opticImages: {
+    complianceImages: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
+        allowNull: true
     },
     pdfs: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
     },
     status: {
         type: DataTypes.ENUM(['Active', 'Inactive']),
