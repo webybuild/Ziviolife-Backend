@@ -4,12 +4,12 @@ const Bucket = process.env.S3_BUCKET;
 
 module.exports = async (req, res) => {
   try {
-    if (
-      req.body.productVariants &&
-      typeof req.body.productVariants === "string"
-    ) {
-      req.body.productVariants = [req.body.productVariants];
-    }
+    // if (
+    //   req.body.productVariants &&
+    //   typeof req.body.productVariants === "string"
+    // ) {
+    //   req.body.productVariants = [req.body.productVariants];
+    // }
     const images = req.files.filter((file) => file.fieldname === "image");
     const complianceImages = req.files.filter(
       (file) => file.fieldname === "complianceImages"

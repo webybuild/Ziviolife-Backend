@@ -21,16 +21,8 @@ const MainProduct = Db.define('mainProduct',{
         type: DataTypes.TEXT,
         allowNull: false
     },
-    techSpecs: {
-        type: DataTypes.ARRAY(DataTypes.TEXT),
-        allowNull: false
-    },
     imageUrl: {
         type: DataTypes.STRING,
-        allowNull: false
-    },
-    featureImages: {
-        type: DataTypes.ARRAY(DataTypes.TEXT),
         allowNull: false
     },
     complianceImages: {

@@ -4,32 +4,10 @@ const Bucket = process.env.S3_BUCKET;
 
 module.exports = async (req, res) => {
   try {
-    const featureImages = req.files.filter(
-      (file) => file.fieldname === "featureImages"
-    );
     const complianceImages = req.files.filter(
       (file) => file.fieldname === "complianceImages"
     );
-    const featureList = [];
     const complianceImageList = [];
-    const featureImageUploadPromises = featureImages.map((image) => {
-      const fileName =
-        Date.now() +
-        "-" +
-        Math.round(Math.random() * 1e9) +
-        "." +
-        image.mimetype.split("/")[1];
-      featureList.push(fileName);
-      const params = {
-        Bucket,
-        Key: "images/" + fileName,
-        Body: image.buffer,
-        ContentType: image.mimetype,
-      };
-
-      return s3.upload(params).promise();
-    });
-
     const complianceImageUploadPromises = complianceImages.map((image) => {
       const fileName =
         Date.now() +
@@ -48,7 +26,6 @@ module.exports = async (req, res) => {
       return s3.upload(params).promise();
     });
 
-    await Promise.all(featureImageUploadPromises);
     await Promise.all(complianceImageUploadPromises);
 
     const fileName =
@@ -75,14 +52,12 @@ module.exports = async (req, res) => {
           .status(500)
           .json({ message: "Failed to upload image! Please try again!" });
       } else {
-        const { name, description, techSpecs, subCategoryId } = req.body;
+        const { name, description, subCategoryId } = req.body;
         const data = await MainProduct.create({
           name,
           description,
-          techSpecs: JSON.parse(techSpecs),
           subCategoryId,
           imageUrl: fileName,
-          featureImages: featureList,
           complianceImages: complianceImageList,
           status: "Active",
         });
